@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { UserCircleIcon, BookOpenIcon } from '@heroicons/react/24/solid'
 
 const Header = () => {
     return (
@@ -18,7 +19,17 @@ const Header = () => {
                         <li><Link to={"/register"}>Register</Link></li>
                     </ul>
                 </div>
-                <Link to={""} className="btn btn-ghost normal-case text-xl"><p className='text-sky-500'>Esho<span className='text-rose-500'>Shikhi</span></p></Link>
+                <Link to={""} className="btn btn-ghost normal-case text-xl">
+                    <div className='flex'>
+                        <div className='me-2'>
+                            <BookOpenIcon className='w-8 text-green-400'></BookOpenIcon>
+                        </div>
+                        <div>
+                            <p className='text-sky-500'><span></span>Esho<span className='text-rose-500'>Shikhi</span></p>
+                        </div>
+                    </div>
+
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
@@ -26,18 +37,22 @@ const Header = () => {
                     <li><Link to={"/courses"}>Courses</Link></li>
                     <li><Link to={"/faq"}>FAQ</Link></li>
                     <li><Link to={"/blog"}>Blog</Link></li>
-                    <li><Link to={"/login"}>Log in</Link></li>
-                    <li><Link to={"/register"}>Register</Link></li>
                 </ul>
             </div>
             {/* <div className="navbar-end">
                 <Link to={""} className="btn">Get started</Link>
             </div> */}
             <div className='navbar-end me-2'>
+                <div>
+                    <ul className="menu menu-horizontal p-0">
+                        <li><Link to={"/login"}>Log in</Link></li>
+                        <li><Link to={"/register"}>Register</Link></li>
+                    </ul>
+                </div>
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src="../images/user-profile.jpg" />
+                            <UserCircleIcon></UserCircleIcon>
                         </div>
                     </label>
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">

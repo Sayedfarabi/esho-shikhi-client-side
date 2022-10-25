@@ -14,6 +14,7 @@ const router = createBrowserRouter([
         path: '/',
         element: <Root></Root>,
         errorElement: <ErrorPage></ErrorPage>,
+        loader: () => fetch('https://esho-shikhi-server.vercel.app'),
         children: [
             {
                 path: '/',
