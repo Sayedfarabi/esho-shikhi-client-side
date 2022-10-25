@@ -1,30 +1,26 @@
 import React from 'react';
 import images1 from '../images/content-img/learning-1.png';
 import images2 from '../images/content-img/learning-2.png';
+import bgImg from '../images/bg-img/home-bg.png';
 
 const Home = () => {
     return (
-        <div>
-            <div className=' md:flex md:justify-around mx-12 px-3'>
-                <div className='w-3/5 border'>
-                    <h1 className='text-sky-800 text-7xl bolder'>Develop Your Skill ... <br /> <span className='text-blue-600'>Lead the world...</span> </h1>
-                </div>
-                <div className='w-2/5 border'>
-                    <img className='w-full bg-base-200 rounded-full' src={images1} alt="" />
-                </div>
-            </div>
-            <div className='md:flex md:justify-around m-12 px-3 w-full'>
-                <div>
-                    <div className='w-3/5 h-full border'>
-                        <img className='w-3/4 bg-base-200 rounded-full' src={images2} alt="" />
+        <div className='border bg-zinc-800' style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', backgroundRepeat: 'no-repeat' }}>
+            <div className='mx-5'>
+                <div className=' md:flex md:justify-around w-full mx-auto px-3 my-4'>
+                    <div className='md:w-1/2 flex justify-center items-center'>
+                        <div>
+                            <h1 className='text-orange-600 text-7xl bolder'>Develop Your Skill <br /> <span className='text-blue-600'>Lead the world</span> </h1>
+                            <p className='mt-5 bg-neutral-600'>Gaining skills is one of the most important things you can do to develop your work. It is the ability to do something well. A well-developed skill can make us master in a particular field, and it can be learned too. Learning new skills helps in your professional life a lot.</p>
+                        </div>
+
                     </div>
-                </div>
-                <div>
-                    <div className='w-3/5 h-full border'>
-                        <h1 className='text-sky-800 text-7xl bolder'>Develop Your Skill ... <br /> <span className='text-blue-600'>Lead the world...</span> </h1>
+                    <div className='md:w-1/2 flex justify-center items-center'>
+                        <img className='w-5/5 rounded-full' src={images2} alt="" />
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };
