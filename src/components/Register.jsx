@@ -12,9 +12,9 @@ const Register = () => {
                         <div className="card-body">
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Name</span>
+                                    <span className="label-text">Full Name</span>
                                 </label>
-                                <input type="text" name='name' placeholder="Type your name" className="input input-bordered" />
+                                <input type="text" name='name' placeholder="Type your full name" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">

@@ -32,7 +32,7 @@ const Course = () => {
                             </div>
                         </div>
                         <div>
-                            <button className="btn btn-primary">Purchase Now</button>
+                            <button className="btn btn-primary">Get premium access</button>
                         </div>
                     </div>
                 </div>
