@@ -7,7 +7,7 @@ import { ChevronDoubleDownIcon } from '@heroicons/react/24/solid';
 const Courses = () => {
 
     const { courses } = useContext(CoursesContext);
-    console.log(courses)
+    // console.log(courses)
     return (
         <div className='md:flex mx-5 w-full'>
             <div className='w-full md:w-4/12 md:h-screen rounded border border-teal-500 bg-slate-200 text-center px-2 pt-8'>

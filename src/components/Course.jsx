@@ -1,10 +1,10 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { StarIcon } from '@heroicons/react/24/solid'
 
 const Course = () => {
     const course = useLoaderData();
-    console.log(course)
+    // console.log(course)
     return (
         <div className='md:w-3/5 mx-auto w-4/5 my-5'>
             <div className="card lg:card-side bg-indigo-200 shadow-xl">
@@ -32,7 +32,7 @@ const Course = () => {
                             </div>
                         </div>
                         <div>
-                            <button className="btn btn-primary">Get premium access</button>
+                            <Link to={'/accounts'}><button className="btn btn-primary">Get premium access</button></Link>
                         </div>
                     </div>
                 </div>

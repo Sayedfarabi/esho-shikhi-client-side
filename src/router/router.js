@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Accounts from "../components/Accounts";
 import Blog from "../components/Blog";
 import Course from "../components/Course";
 import Courses from "../components/Courses";
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
                 path: "/courses/:id",
                 element: <Course></Course>,
                 loader: async ({ params }) => await fetch(`https://esho-shikhi-server.vercel.app/courses/${params.id}`)
+            },
+            {
+                path: '/accounts',
+                element: <Accounts></Accounts>
             }
         ]
 

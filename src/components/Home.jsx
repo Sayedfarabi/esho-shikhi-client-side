@@ -1,9 +1,10 @@
 import React from 'react';
-import images1 from '../images/content-img/learning-1.png';
 import images2 from '../images/content-img/learning-2.png';
 import bgImg from '../images/bg-img/home-bg.png';
 
+
 const Home = () => {
+
     return (
         <div className='border bg-zinc-800' style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', backgroundRepeat: 'no-repeat' }}>
             <div className='mx-5'>
