@@ -1,23 +1,20 @@
 import React from 'react';
-// import { Children } from 'react';
 import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
-    console.log(loading)
+    const location = useLocation();
+    // console.log(loading)
 
     if (loading) {
-
         return (
             <div className='flex justify-center items-center'>
                 <div>
                     <progress className="progress w-56"></progress>
                 </div>
-
             </div>
-
         )
 
     }
@@ -26,7 +23,7 @@ const PrivateRoute = ({ children }) => {
         return children;
     }
 
-    return <Navigate to={'/login'}></Navigate>
+    return <Navigate to={'/login'} state={{ form: location }} replace></Navigate>
 
 };
 

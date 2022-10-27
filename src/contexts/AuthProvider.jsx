@@ -17,18 +17,21 @@ const AuthProvider = ({ children }) => {
 
     }
     const logIn = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     const googleProvider = new GoogleAuthProvider();
 
     const signInWithGoogle = () => {
+        setLoading(true)
         return signInWithPopup(auth, googleProvider);
     };
 
     const gitHubProvider = new GithubAuthProvider();
 
     const signInWithGitHub = () => {
+        setLoading(true)
         return signInWithPopup(auth, gitHubProvider);
     };
 

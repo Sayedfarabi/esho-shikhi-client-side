@@ -1,13 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { UserCircleIcon, BookOpenIcon } from '@heroicons/react/24/solid';
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
-    const { photoURL, displayName } = user;
-    // console.log(photoURL)
+
 
 
     const logOutHandler = () => {
@@ -64,12 +63,12 @@ const Header = () => {
                     </ul>
                 </div>
                 {
-                    user.email &&
+                    user?.email &&
                     <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                                 {
-                                    photoURL ? <img src={photoURL} alt="user-profile" /> : <UserCircleIcon></UserCircleIcon>
+                                    user?.photoURL ? <img src={user?.photoURL} alt="user-profile" /> : <UserCircleIcon></UserCircleIcon>
 
                                 }
                                 {/* <UserCircleIcon></UserCircleIcon> */}
@@ -78,7 +77,7 @@ const Header = () => {
 
                         </label>
                         <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                            <li className='text-center'>{displayName ? displayName : 'User Profile'}</li>
+                            <li className='text-center'>{user?.displayName ? user?.displayName : 'User Profile'}</li>
                             <li><Link to={"/profile"}>User Profile</Link></li>
                             <li><Link to={""}>Settings</Link></li>
                             <li><button onClick={logOutHandler} className="btn btn-outline btn-info">Log Out</button></li>
