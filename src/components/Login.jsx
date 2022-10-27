@@ -1,10 +1,11 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 
 const Login = () => {
     const { logIn, error, setError, signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -20,6 +21,7 @@ const Login = () => {
                 console.log(user);
                 // setError('');
                 form.reset();
+                navigate('/');
             })
             .catch(error => {
                 const errorMessage = error.message;

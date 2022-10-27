@@ -32,7 +32,7 @@ const Course = () => {
                             </div>
                         </div>
                         <div>
-                            <Link to={'/accounts'}><button className="btn btn-primary">Get premium access</button></Link>
+                            <Link to={'/order'}><button className="btn btn-primary">Get premium access</button></Link>
                         </div>
                     </div>
                 </div>

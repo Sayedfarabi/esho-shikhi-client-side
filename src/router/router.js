@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Accounts from "../components/Accounts";
+import Orders from "../components/Orders";
 import Blog from "../components/Blog";
 import Course from "../components/Course";
 import Courses from "../components/Courses";
@@ -10,6 +10,7 @@ import Login from "../components/Login";
 import Profile from "../components/Profile";
 import Register from "../components/Register";
 import Root from "../components/Root";
+import PrivateRoute from "../components/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -56,8 +57,8 @@ const router = createBrowserRouter([
                 loader: async ({ params }) => await fetch(`https://esho-shikhi-server.vercel.app/courses/${params.id}`)
             },
             {
-                path: '/accounts',
-                element: <Accounts></Accounts>
+                path: '/order',
+                element: <PrivateRoute><Orders></Orders></PrivateRoute>
             }
         ]
 

@@ -10,6 +10,7 @@ export const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
 
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -37,16 +38,14 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            if (currentUser) {
-                setUser(currentUser);
-                console.log(currentUser)
-            } else {
-                console.log('user nai...');
-            }
+            setUser(currentUser);
+            setLoading(false);
+            console.log(currentUser)
         })
+
         return () => {
             unsubscribe()
-        }
+        };
     }, [])
 
 
@@ -61,6 +60,7 @@ const AuthProvider = ({ children }) => {
         signInWithGoogle,
         signInWithGitHub,
         logOut,
+        loading,
 
 
     }
