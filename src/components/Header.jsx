@@ -56,14 +56,23 @@ const Header = () => {
                 <Link to={""} className="btn">Get started</Link>
             </div> */}
             <div className='navbar-end me-2'>
+
                 <div>
-                    <ul className="menu menu-horizontal p-0">
+                    {
+                        user?.uid ||
+                        <ul className="menu menu-horizontal p-0">
+                            <li className='text-violet-300'><Link to={"/login"}>Log in</Link></li>
+                            <li className='text-purple-300'><Link to={"/register"}>Register</Link></li>
+                        </ul>
+
+                    }
+                    {/* <ul className="menu menu-horizontal p-0">
                         <li className='text-violet-300'><Link to={"/login"}>Log in</Link></li>
                         <li className='text-purple-300'><Link to={"/register"}>Register</Link></li>
-                    </ul>
+                    </ul> */}
                 </div>
                 {
-                    user?.email &&
+                    user?.uid &&
                     <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
@@ -77,7 +86,7 @@ const Header = () => {
 
                         </label>
                         <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                            <li className='text-center'>{user?.displayName ? user?.displayName : 'User Profile'}</li>
+                            <li className='text-center'>{user?.displayName ? `${user?.displayName}` : 'User Profile'}</li>
                             <li><Link to={"/profile"}>User Profile</Link></li>
                             <li><Link to={""}>Settings</Link></li>
                             <li><button onClick={logOutHandler} className="btn btn-outline btn-info">Log Out</button></li>

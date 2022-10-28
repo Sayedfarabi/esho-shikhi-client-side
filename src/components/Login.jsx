@@ -9,7 +9,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-    console.log(from);
+    // console.log(from);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -37,9 +37,25 @@ const Login = () => {
 
     const googleHandler = () => {
         signInWithGoogle()
+            .then(result => {
+                setError('')
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                setError(errorMessage);
+            })
     }
     const gitHubHandler = () => {
         signInWithGitHub()
+            .then(result => {
+                setError('')
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                setError(errorMessage);
+            })
     }
 
 
