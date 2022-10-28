@@ -5,13 +5,24 @@ import { AuthContext } from '../contexts/AuthProvider';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, dark, setDark } = useContext(AuthContext);
 
 
 
     const logOutHandler = () => {
         logOut()
         window.location.reload()
+    }
+
+    // let isDark = false;
+
+    const themeHandler = (event) => {
+        event.preventDefault()
+        const isDark = !dark;
+        setDark(isDark);
+        console.log(dark);
+
+
     }
 
 
@@ -70,7 +81,7 @@ const Header = () => {
                 <div>
                     {
                         user?.uid &&
-                        <div className="dropdown dropdown-end">
+                        <div className={"dropdown dropdown-end"}>
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
                                     {
@@ -82,8 +93,18 @@ const Header = () => {
 
 
                             </label>
-                            <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                                <li className='text-center'>{user?.displayName ? `${user?.displayName}` : 'User Profile'}</li>
+                            <ul tabIndex={0} className={dark ? " bg-black text-base-200 mt-3 p-2 shadow menu menu-compact dropdown-content  rounded-box w-52" : " mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"}>
+                                <li className='text-center text-indigo-600'>{user?.displayName ? `${user?.displayName}` : 'User Profile'}</li>
+                                <li>
+                                    <div>
+                                        <div><p>Theme: <small>(double click)</small> </p></div>
+                                        <div>
+                                            <form>
+                                                <input onChange={themeHandler} type="checkbox" name='theme' className="toggle toggle-sm" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
                                 <li><Link to={"/profile"}>User Profile</Link></li>
                                 <li><Link to={""}>Settings</Link></li>
                                 <li><button onClick={logOutHandler} className="btn btn-outline btn-info">Log Out</button></li>
@@ -100,5 +121,7 @@ const Header = () => {
         </div>
     );
 };
+
+// mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52
 
 export default Header;

@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuth
 import React, { createContext } from 'react';
 import { useEffect } from "react";
 import { useState } from "react";
+
 import app from "../firebase/firebase.config";
 
 const auth = getAuth(app);
@@ -13,6 +14,7 @@ const AuthProvider = ({ children }) => {
     const [loginError, setLoginError] = useState('');
     const [registerError, setRegisterError] = useState('');
     const [loading, setLoading] = useState(true);
+    const [dark, setDark] = useState(false);
 
     const createUser = (email, password) => {
         setLoading(true)
@@ -81,6 +83,8 @@ const AuthProvider = ({ children }) => {
         setLoginError,
         registerError,
         setRegisterError,
+        dark,
+        setDark,
         createUser,
         profileUpdate,
         verifyEmail,
