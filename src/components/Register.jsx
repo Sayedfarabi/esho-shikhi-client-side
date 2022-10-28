@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
+import toast from 'react-hot-toast';
 
 
 
@@ -25,6 +26,7 @@ const Register = () => {
                 verificationEmail();
                 updateNameAndPhoto(name, photo);
                 form.reset();
+                toast.success('Please verify your Email Address before Login');
                 navigate('/login');
             })
             .catch(error => {
@@ -35,7 +37,7 @@ const Register = () => {
         const verificationEmail = () => {
             verifyEmail()
                 .then(result => {
-                    alert('Please check your Email and verify your Email Address.');
+                    // alert('Please check your Email and verify your Email Address.');
                 })
                 .catch(error => {
                     const errorMessage = error.message;
