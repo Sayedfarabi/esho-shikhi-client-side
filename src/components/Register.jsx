@@ -5,7 +5,8 @@ import { AuthContext } from '../contexts/AuthProvider';
 
 
 const Register = () => {
-    const { createUser, verifyEmail, setUser, setError, error } = useContext(AuthContext)
+    const { createUser, verifyEmail, setLoading, profileUpdate, setRegisterError, registerError } = useContext(AuthContext);
+
 
     const navigate = useNavigate();
 
@@ -13,29 +14,43 @@ const Register = () => {
         event.preventDefault();
         const form = event.target;
 
-        // const name = form.name.value;
+        const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        // const file = form.file.value;
+        const photo = form.photo.value;
 
         createUser(email, password)
             .then(result => {
-                const user = result.user;
-                // setError('');
-                console.log(user);
-                verifyEmail();
+                setLoading(true);
+                verificationEmail();
+                updateNameAndPhoto(name, photo);
                 form.reset();
-                setUser({});
                 navigate('/login');
             })
             .catch(error => {
-                console.error(error);
-                // setError('Error : Please check your Email or Password validation ...');
-                // setError(error.message)
+                const errorMessage = error.message;
+                setRegisterError(errorMessage);
             })
 
+        const verificationEmail = () => {
+            verifyEmail()
+                .then(result => {
+                    alert('Please check your Email and verify your Email Address.');
+                })
+                .catch(error => {
+                    const errorMessage = error.message;
+                    setRegisterError(errorMessage);
+                })
+        }
 
-        // console.log(name, file, email, password)
+        const updateNameAndPhoto = (name, photo) => {
+            const profile = {
+                displayName: name,
+                photoURL: photo
+            }
+            profileUpdate(profile)
+        }
+
     }
 
 
@@ -51,7 +66,7 @@ const Register = () => {
                     <div className="card w-full shadow-3xl bg-base-100">
                         <h2 className='text-center text-5xl py-3 text-sky-600'>Register Now !!</h2>
                         <div className='w-4/5 mx-auto'>
-                            <p className='text-center text-xl text-rose-600'>{ }</p>
+                            <p className='text-center text-xl text-rose-600'>{registerError}</p>
                         </div>
                         <form onSubmit={submitHandler} className="card-body">
                             <div className="form-control">
@@ -77,7 +92,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text text-2xl bolder">Photo</span>
                                 </label>
-                                <input type="file" name='file' placeholder="Select Your Photo" className="input" />
+                                <input type="url" name='photo' placeholder="photo url" className="input input-bordered" />
 
                                 <label className="label">
                                     <p>Have an account ? Please <Link to={'/login'} className="label-text-alt link link-hover text-indigo-600 text-lg">Log in</Link> </p>

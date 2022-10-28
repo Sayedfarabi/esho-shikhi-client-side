@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import React, { createContext } from 'react';
 import { useEffect } from "react";
 import { useState } from "react";
@@ -10,18 +10,23 @@ export const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [userEmail, setUserEmail] = useState('');
-    const [error, setError] = useState('');
+    const [loginError, setLoginError] = useState('');
+    const [registerError, setRegisterError] = useState('');
     const [loading, setLoading] = useState(true);
 
     const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password);
 
     }
     const verifyEmail = () => {
-        sendEmailVerification(auth.currentUser)
-            .then(() => {
-                alert('Please check your Email and verify your Email Address.');
-            })
+        return sendEmailVerification(auth.currentUser)
+        // .then(() => {
+        //     alert('Please check your Email and verify your Email Address.');
+        // })
+    }
+    const profileUpdate = (profile) => {
+        updateProfile(auth.currentUser, profile)
     }
 
     const resetPassword = (email) => {
@@ -70,9 +75,12 @@ const AuthProvider = ({ children }) => {
         setUser,
         userEmail,
         setUserEmail,
-        error,
-        setError,
+        loginError,
+        setLoginError,
+        registerError,
+        setRegisterError,
         createUser,
+        profileUpdate,
         verifyEmail,
         resetPassword,
         logIn,
@@ -80,6 +88,7 @@ const AuthProvider = ({ children }) => {
         signInWithGitHub,
         logOut,
         loading,
+        setLoading
 
 
     }

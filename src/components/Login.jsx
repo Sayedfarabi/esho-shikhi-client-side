@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 
 const Login = () => {
-    const { logIn, userEmail, setUserEmail, resetPassword, error, setError, signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
+    const { logIn, setUserEmail, resetPassword, loginError, setLoginError, signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -23,13 +23,13 @@ const Login = () => {
             .then(result => {
                 const user = result.user
                 console.log(user);
-                setError('');
+                setLoginError('');
                 form.reset();
                 navigate(from, { replace: true });
             })
             .catch(error => {
                 const errorMessage = error.message;
-                setError(errorMessage);
+                setLoginError(errorMessage);
                 form.reset()
             })
 
@@ -38,23 +38,23 @@ const Login = () => {
     const googleHandler = () => {
         signInWithGoogle()
             .then(result => {
-                setError('')
+                loginError('')
                 navigate(from, { replace: true })
             })
             .catch(error => {
                 const errorMessage = error.message;
-                setError(errorMessage);
+                loginError(errorMessage);
             })
     }
     const gitHubHandler = () => {
         signInWithGitHub()
             .then(result => {
-                setError('')
+                loginError('')
                 navigate(from, { replace: true })
             })
             .catch(error => {
                 const errorMessage = error.message;
-                setError(errorMessage);
+                loginError(errorMessage);
             })
     }
 
@@ -83,7 +83,7 @@ const Login = () => {
                     <div className="card w-full shadow-2xl bg-base-100">
                         <h2 className='text-center text-5xl py-3 text-sky-600'>Log in Now !!</h2>
                         <div className='w-4/5 mx-auto'>
-                            <p className='text-center text-xl text-rose-600'>{error}</p>
+                            <p className='text-center text-xl text-rose-600'>{loginError}</p>
                         </div>
                         <form onSubmit={handleSubmit} className="card-body">
                             <div className="form-control">
