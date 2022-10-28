@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CoursesContext } from './Root';
-import { ChevronDoubleDownIcon } from '@heroicons/react/24/solid';
+
 
 
 const Courses = () => {
@@ -9,21 +9,10 @@ const Courses = () => {
     const { courses } = useContext(CoursesContext);
     // console.log(courses)
     return (
-        <div className='md:flex mx-5 w-full'>
-            <div className='w-full md:w-4/12 md:h-screen rounded border border-teal-500 bg-slate-200 text-center px-2 pt-8'>
-                {/* <select className="select select-bordered select-lg w-full max-w-xs">
-                    <option disabled selected>Select Your Course</option>
+        <div className='md:flex w-full'>
+            <div className='w-full md:w-3/12 md:h-full  text-center px-2 pt-8'>
 
-                    {
-                        courses.map(course => {
-                            return <option className='text-lime-600' key={`${course.id}`}>
-                                <Link to={`/courses/${course.id}`}>{course.name}</Link>
-                            </option>
-
-                        })
-                    }
-                </select> */}
-                <h3 className='text-4xl text-fuchsia-700 bolder'>Select Your Course</h3>
+                <h3 className='text-4xl text-fuchsia-700 bolder my-6'>Select Your Course</h3>
                 <ul className="menu w-full">
                     {
                         courses.map(course => {
@@ -37,7 +26,7 @@ const Courses = () => {
                     }
                 </ul>
             </div>
-            <div className='w-full md:w-8/12 text-center bg-gray-600 px-4 py-3 pt-8'>
+            <div className='w-full md:w-9/12 text-center bg-gray-600 px-4 py-3 pt-8'>
                 <div className='grid md:grid-cols-2 gap-4'>
                     {
                         courses.map(course => {

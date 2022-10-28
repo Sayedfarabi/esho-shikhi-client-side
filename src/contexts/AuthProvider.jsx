@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuth
 import React, { createContext } from 'react';
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import app from "../firebase/firebase.config";
 
@@ -15,6 +16,8 @@ const AuthProvider = ({ children }) => {
     const [registerError, setRegisterError] = useState('');
     const [loading, setLoading] = useState(true);
     const [dark, setDark] = useState(false);
+
+
 
     const createUser = (email, password) => {
         setLoading(true)
