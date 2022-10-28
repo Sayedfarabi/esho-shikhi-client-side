@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import React, { createContext } from 'react';
 import { useEffect } from "react";
 import { useState } from "react";
@@ -9,6 +9,7 @@ export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
+    const [userEmail, setUserEmail] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
 
@@ -16,6 +17,17 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
 
     }
+    const verifyEmail = () => {
+        sendEmailVerification(auth.currentUser)
+            .then(() => {
+                alert('Please check your Email and verify your Email Address.');
+            })
+    }
+
+    const resetPassword = (email) => {
+        sendPasswordResetEmail(auth, email)
+    }
+
     const logIn = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
@@ -56,9 +68,13 @@ const AuthProvider = ({ children }) => {
 
         user,
         setUser,
+        userEmail,
+        setUserEmail,
         error,
         setError,
         createUser,
+        verifyEmail,
+        resetPassword,
         logIn,
         signInWithGoogle,
         signInWithGitHub,

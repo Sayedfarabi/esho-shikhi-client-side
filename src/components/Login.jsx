@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 
 const Login = () => {
-    const { logIn, error, setError, signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
+    const { logIn, userEmail, setUserEmail, resetPassword, error, setError, signInWithGoogle, signInWithGitHub } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -58,6 +58,20 @@ const Login = () => {
             })
     }
 
+    const handleEmailBlur = (event) => {
+        const email = event.target.value;
+        setUserEmail(email);
+    }
+
+
+    const handleResetPassword = (userEmail, setUserEmail) => {
+        if (userEmail) {
+            resetPassword(userEmail)
+            setUserEmail('')
+        } else {
+            alert('Please provide your input Email');
+        }
+    }
 
 
 
@@ -76,7 +90,7 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" placeholder="email" name='email' className="input input-bordered" required />
+                                <input onBlur={handleEmailBlur} type="email" placeholder="email" name='email' className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -84,7 +98,7 @@ const Login = () => {
                                 </label>
                                 <input type="password" placeholder="password" name='password' className="input input-bordered" required />
                                 <label className="label">
-                                    <Link to={''} className="label-text-alt text-warning link link-hover">Forgot password?</Link>
+                                    <p>Forgot password? <button onClick={handleResetPassword} className='btn btn-info btn-xs'>Please Reset</button></p>
                                 </label>
                                 <div className='mx-auto mt-5'>
                                     <div>

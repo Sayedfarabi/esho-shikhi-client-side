@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 
 
 
 const Register = () => {
-    const { createUser, setError, error } = useContext(AuthContext)
+    const { createUser, verifyEmail, setUser, setError, error } = useContext(AuthContext)
+
+    const navigate = useNavigate();
 
     const submitHandler = event => {
         event.preventDefault();
@@ -21,6 +23,10 @@ const Register = () => {
                 const user = result.user;
                 // setError('');
                 console.log(user);
+                verifyEmail();
+                form.reset();
+                setUser({});
+                navigate('/login');
             })
             .catch(error => {
                 console.error(error);
@@ -45,7 +51,7 @@ const Register = () => {
                     <div className="card w-full shadow-3xl bg-base-100">
                         <h2 className='text-center text-5xl py-3 text-sky-600'>Register Now !!</h2>
                         <div className='w-4/5 mx-auto'>
-                            <p className='text-center text-xl text-rose-600'>{error}</p>
+                            <p className='text-center text-xl text-rose-600'>{ }</p>
                         </div>
                         <form onSubmit={submitHandler} className="card-body">
                             <div className="form-control">
